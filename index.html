@@ -99,17 +99,12 @@ dialog::backdrop{background:rgba(0,0,0,.6)}
 </header>
 
 <nav class="tabs" role="tablist" aria-label="Velg visning">
-  <button class="tab" role="tab" id="tab-utvalgte" aria-controls="utvalgte" aria-selected="true">Utvalgte</button>
-  <button class="tab" role="tab" id="tab-tekster" aria-controls="tekster" aria-selected="false" tabindex="-1">Tekster</button>
+  <button class="tab" role="tab" id="tab-tekster" aria-controls="tekster" aria-selected="true">Tekster</button>
   <button class="tab" role="tab" id="tab-foto" aria-controls="foto" aria-selected="false" tabindex="-1">Foto</button>
   <button class="tab" role="tab" id="tab-alt" aria-controls="alt" aria-selected="false" tabindex="-1">Alt</button>
 </nav>
 
-<!-- Utvalgte -->
-<section class="panel" id="utvalgte" role="tabpanel" aria-labelledby="tab-utvalgte">
-  <div class="grid" data-slot="featured"></div>
-</section>
-<section class="panel" id="tekster" role="tabpanel" aria-labelledby="tab-tekster" hidden>
+<section class="panel" id="tekster" role="tabpanel" aria-labelledby="tab-tekster">
   <div class="grid" data-slot="texts"></div>
 </section>
 <section class="panel" id="foto" role="tabpanel" aria-labelledby="tab-foto" hidden>
@@ -155,7 +150,6 @@ SERIES.forEach(function(s,i){
   WORKS["s_"+s.id]={kind:"text",kicker:"Livsløpserien "+(i+1)+"/4 · Fremtind · "+s.year,title:s.title,role:"Idé og tekst",img:s.img,url:s.url};
 });
 var SLOTS={
-  featured:["vann","barn","serie"],
   texts:["vann","barn","s_ung","s_etablering","s_familien","s_barna"],
   photos:["f_vann","f_nyd","f_vespa","f_oras"],
   all:["vann","barn","serie","f_vann","f_nyd","f_vespa","f_oras"]
@@ -194,7 +188,7 @@ tabs.forEach(function(t,i){
     var n=tabs[(i+(e.key==="ArrowRight"?1:tabs.length-1))%tabs.length];show(n.getAttribute("aria-controls"),true);
   });
 });
-function fromHash(){var h=(location.hash||"").slice(1);if(["utvalgte","tekster","foto","alt"].indexOf(h)>-1)show(h);}
+function fromHash(){var h=(location.hash||"").slice(1);if(["tekster","foto","alt"].indexOf(h)>-1)show(h);}
 fromHash();window.addEventListener("hashchange",fromHash);
 
 /* Dialog */

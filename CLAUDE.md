@@ -13,14 +13,14 @@ Dette er porteføljesiden til Heidi F. Enger Otone (innhold og kommunikasjon, Os
 - Innholdet ligger i JavaScript-objektene `WORKS`, `SERIES` og `SLOTS` nederst i `index.html`:
   - `WORKS`: hvert arbeid (tittel, kicker-linje, rolle, bilde, lenke eller bildeliste)
   - `SERIES`: de fire artiklene i Livsløpserien
-  - `SLOTS`: hvilke arbeider som vises i hver fane (Utvalgte, Tekster, Foto, Alt)
+  - `SLOTS`: hvilke arbeider som vises i hver fane (Tekster, Foto, Alt)
 - Nytt arbeid: legg bildet i `img/` (komprimert, maks ca. 1200 px bredt), legg til et innslag i `WORKS` og sett det inn i riktige `SLOTS`.
 
 ## Designregler (hentet fra CV-en hennes i Figma)
 - Kun svart og hvitt. Ingen farger.
 - Skrift: Inter (vekt 500 til overskrifter, 400 til brødtekst) og IBM Plex Mono for små detaljer (type, kunde, år, e-post).
 - Rent og luftig: hvert kort viser bare bilde, kicker-linje (type · kunde · år), tittel og én linje om hva Heidi gjorde. Ingen merker, rammer eller lange beskrivelser.
-- Siden åpner på fanen «Utvalgte» (Klok av skade, Barneforsikring, Livsløpserien). «Alt» står sist.
+- Siden åpner på fanen «Tekster». Rekkefølgen er Tekster, Foto, Alt. «Alt» står sist.
 
 ## Fakta om arbeidene
 - Kundehistoriene og Livsløpserien er laget for Fremtind og publisert på sparebank1.no.
