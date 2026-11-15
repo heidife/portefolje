@@ -129,6 +129,8 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 .stat.photo::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0) 60%)}
 .stat.photo>*{position:relative}
 .stat.photo b,.stat.photo span{color:#fff}
+.stat.plain{background:#F1F1EE;color:var(--ink)}
+.card:hover .stat.plain{background:#ECECE8}
 .shots{display:grid;gap:12px}
 .shots.ads{grid-template-columns:repeat(3,1fr);align-items:start}
 .shots.lp{grid-template-columns:repeat(2,1fr);align-items:start}
@@ -503,7 +505,7 @@ var SERIES=[
 ];
 var WORKS={
   lo:{kind:"case",kicker:"Kampanje og CRM · Fremtind og LOfavør · 2025–2026",title:"Fra passive medlemmer til nye kunder",role:"Markedssamarbeid, budskapsutvikling, nyhetsbrev og kampanje",
-        stat:"+35 %",statLabel:"flere kunder i målgruppen",img:"img/lo-cover.jpg"},
+        stat:"+35 %",statLabel:"flere kunder i målgruppen"},
   vann:{kind:"text",kicker:"Kundehistorie · Fremtind · 2024",title:"Klok av (vann)skade: sikrer seg mot vannlekkasje",role:"Fant casepersoner, intervju, tekst og foto",img:"img/vannlekkasje.jpg",
         url:SB+"privat/forsikring/kundehistorier/sikrer-seg-mot-vannlekkasje-klok-av-skade.html"},
   barn:{kind:"text",kicker:"Kundehistorie · Fremtind · 2025",title:"Barneforsikring som trygghet når livet tar en ny vending",role:"Fant casepersoner, intervju og tekst",img:"img/c-barneforsikring.jpg",
@@ -543,7 +545,7 @@ function card(key){
   else if(w.kind==="case"){ c=el("a",{class:"card",href:"#lofavor"}); }
   else { c=el("button",{class:"card",type:"button","data-open":key}); }
   var media = w.kind==="case"
-    ? '<div class="media"><div class="stat photo" style="background-image:url('+w.img+')"><b>'+esc(w.stat)+'</b><span>'+esc(w.statLabel)+'</span></div></div>'
+    ? '<div class="media"><div class="stat '+(w.img?'photo" style="background-image:url('+w.img+')"':'plain"')+'><b>'+esc(w.stat)+'</b><span>'+esc(w.statLabel)+'</span></div></div>'
     : w.kind==="series"
     ? '<div class="media"><div class="mosaic">'+SERIES.map(function(s){return '<img src="'+s.img+'" alt="" loading="lazy">';}).join("")+'</div></div>'
     : '<div class="media"><img src="'+w.img+'" alt="" loading="lazy" style="object-position:'+(w.pos||'50% 50%')+'"></div>';

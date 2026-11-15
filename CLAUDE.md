@@ -31,6 +31,6 @@ Dette er porteføljesiden til Heidi F. Enger Otone (innhold og kommunikasjon, Os
 
 ## Fakta om arbeidene
 - Kundehistoriene og Livsløpserien er laget for Fremtind og publisert på sparebank1.no.
-- LOfavør-saken er et markedssamarbeid mellom Fremtind og LOfavør (2025–2026). Bildene (`lo-cover.jpg`, `lo-ad-1.jpg` til `lo-ad-3.jpg`) er skjermbilder fra kampanjen, ikke foto tatt av Heidi.
+- LOfavør-saken er et markedssamarbeid mellom Fremtind og LOfavør (2025–2026). Kortet har ikke bilde, bare «+35 %» på grå bakgrunn (bevisst valg). Annonsene (`lo-ad-1.jpg` til `lo-ad-3.jpg`) er skjermbilder fra kampanjen, ikke foto tatt av Heidi.
 - Bildene i vannlekkasje-saken og alle fotoprosjektene er tatt av Heidi.
 - Bildene i barneforsikring-saken og Livsløpserien er IKKE tatt av Heidi. Ikke krediter dem til henne.
