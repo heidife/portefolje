@@ -26,7 +26,7 @@ Dette er porteføljesiden til Heidi F. Enger Otone (innhold og kommunikasjon, Os
 
 ## Designregler (hentet fra CV-en hennes i Figma)
 - Kun svart og hvitt (og svake gråtoner). Ingen farger.
-- Skrift: Inter (vekt 500 til overskrifter, 400 til brødtekst) og IBM Plex Mono for små detaljer (type, kunde, år, e-post, etiketter som «/Tidligere arbeid»).
+- Skrift: Montserrat på hele siden (lastes fra Google Fonts). Små detaljer (type, kunde, år, e-post, etiketter som «/Tidligere arbeid») står i liten skrift, ofte med store bokstaver og luft mellom bokstavene. Tidligere var det Inter og IBM Plex Mono. Det står fortsatt igjen i koden, men Montserrat overstyrer det.
 - Rent og luftig: hvert arbeidskort viser bare bilde, kicker-linje (type · kunde · år), tittel og én linje om hva Heidi gjorde. Ingen merker eller lange beskrivelser.
 
 ## Fakta om arbeidene
