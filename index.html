@@ -6,24 +6,18 @@
 <title>Heidi F. Enger Otone portefølje</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* Layout: luftig kortrutenett i tre kolonner, faner øverst, detaljer i dialog. Stil fra CV: svart/hvitt, Inter Medium + IBM Plex Mono */
+/* Layout: oppbygning inspirert av en personlig profilside (hero-påstand, kompetanser, utvalgte arbeider, om meg, arbeid sortert i kategorier).
+   Stil fra CV-en: svart/hvitt, Inter Medium + IBM Plex Mono, innhold som starter en tredjedel inn. */
 :root{
-  --paper:#FFFFFF;
-  --ink:#0A0A0A;
-  --muted:#6B6B6B;
-  --line:#E6E6E6;
-  --tint:#F4F4F4;
+  --paper:#FFFFFF; --ink:#0A0A0A; --muted:#6B6B6B; --line:#E6E6E6; --tint:#F4F4F4;
   --sans:"Inter","Helvetica Neue",Arial,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
   color-scheme:light;
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){--paper:#0B0B0B;--ink:#F2F2F2;--muted:#9A9A9A;--line:#262626;--tint:#171717;color-scheme:dark}
-}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#0B0B0B;--ink:#F2F2F2;--muted:#9A9A9A;--line:#262626;--tint:#171717;color-scheme:dark}}
 :root[data-theme="dark"]{--paper:#0B0B0B;--ink:#F2F2F2;--muted:#9A9A9A;--line:#262626;--tint:#171717;color-scheme:dark}
-
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5}
@@ -32,28 +26,92 @@ a{color:inherit}
 .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
 @media (max-width:520px){.wrap{padding:0 18px}}
 .mono{font-family:var(--mono);font-size:13px;line-height:1.4}
+.cols{display:grid;grid-template-columns:1fr 2fr;column-gap:28px;row-gap:16px;align-items:start}
+@media (max-width:760px){.cols{grid-template-columns:1fr}}
 
 /* Topp */
-header{padding:72px 0 56px;display:grid;gap:28px}
-.name{font-weight:500;font-size:clamp(44px,8vw,96px);line-height:1.04;letter-spacing:-.03em;margin:0;max-width:10ch;text-wrap:balance}
-.intro{font-weight:500;font-size:clamp(18px,1.8vw,21px);line-height:1.4;letter-spacing:-.005em;margin:0;max-width:44ch}
-.meta-row{display:flex;flex-wrap:wrap;gap:6px 28px;margin:0;color:var(--muted)}
-.meta-row a{text-decoration:none}
-.meta-row a:hover{text-decoration:underline;text-underline-offset:3px}
+.top{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;justify-content:flex-end;align-items:center;gap:16px;height:60px}
+.brand{font-weight:500;letter-spacing:-.01em;text-decoration:none}
+.nav{display:flex;gap:24px}
+.nav a{font-family:var(--mono);font-size:13px;text-decoration:none;color:var(--muted);padding:4px 0;border-bottom:1px solid transparent}
+.nav a:hover{color:var(--ink)}
+.nav a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--ink)}
+@media (max-width:420px){.nav{gap:14px}}
 
-/* Faner */
-.tabs{display:flex;gap:28px;border-bottom:1px solid var(--line);margin-bottom:40px;overflow-x:auto}
-.tab{all:unset;cursor:pointer;font-family:var(--sans);font-weight:500;font-size:15px;padding:0 0 14px;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
-.tab:hover{color:var(--ink)}
-.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
-.tab:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+/* Hero */
+.hero{background:var(--paper);color:var(--ink);border-bottom:1px solid var(--line)}
+.hero .wrap{padding-top:clamp(56px,8vw,96px);padding-bottom:clamp(56px,8vw,88px);display:grid;justify-items:center;text-align:center;gap:20px}
+.avatar{width:140px;height:140px;border-radius:50%;object-fit:cover;display:block;box-shadow:0 0 0 1px var(--line)}
+.hero h1{font-weight:500;font-size:clamp(36px,5.5vw,64px);line-height:1.05;letter-spacing:-.03em;margin:4px 0 0;text-wrap:balance}
+.hero .bio{margin:0;max-width:62ch;font-size:clamp(17px,1.6vw,19px);line-height:1.6;text-wrap:pretty}
+.hero .links{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 24px;margin:4px 0 0;color:var(--muted)}
+.hero .links a{text-decoration:underline;text-underline-offset:3px}
+
+/* Seksjoner */
+.block{padding:88px 0 0}
+.block h2{font-weight:500;font-size:clamp(30px,3.6vw,44px);letter-spacing:-.025em;line-height:1.05;margin:0}
+.rule{border-top:1px solid var(--ink);padding-top:16px}
+
+/* Hva gjør jeg */
+.acc{border-top:1px solid var(--ink)}
+.acc details{border-bottom:1px solid var(--line)}
+.acc summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;font-weight:500;font-size:20px;letter-spacing:-.01em}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::after{content:"+";font-family:var(--mono);font-weight:400;font-size:20px}
+.acc details[open] summary::after{content:"–"}
+.acc ul{margin:0 0 22px;padding-left:1.1em;display:grid;gap:6px;color:var(--ink);max-width:56ch}
+.what{display:grid;grid-template-columns:1fr 1fr;gap:28px 56px;align-items:start;margin-top:36px}
+.what figure{margin:0}
+.what img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+.what figcaption{margin-top:8px;color:var(--muted)}
+@media (max-width:760px){.what{grid-template-columns:1fr}}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:13px;text-decoration:none;background:var(--ink);color:var(--paper);padding:11px 16px;margin-top:28px}
+.btn:hover{opacity:.85}
+
+
+
+/* Hva gjør jeg: invertert og midtstilt */
+.what-dark{background:var(--ink);color:var(--paper)}
+.what-dark .wrap{padding-top:clamp(64px,9vw,104px);padding-bottom:clamp(64px,9vw,104px);display:grid;justify-items:center;text-align:center}
+.what-dark .acc{width:100%;max-width:680px;border-top:1px solid color-mix(in srgb,var(--paper) 35%,transparent)}
+.what-dark .acc details{border-bottom:1px solid color-mix(in srgb,var(--paper) 35%,transparent)}
+.what-dark .acc summary{justify-content:center;gap:14px}
+.what-dark .acc ul{list-style:none;padding:0;margin:0 auto 24px;justify-items:center;color:color-mix(in srgb,var(--paper) 82%,transparent)}
+.what-dark .btn{background:var(--paper);color:var(--ink);margin-top:40px}
+.what-dark :focus-visible{outline-color:var(--paper)}
+footer{margin-top:0}
+/* Arbeid: kategorier */
+.page-head{padding:120px 0 40px}
+.page-head h1{font-weight:500;font-size:clamp(40px,7vw,88px);line-height:1.04;letter-spacing:-.03em;margin:0}
+.page-head p{margin:16px 0 0;color:var(--muted)}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+@media (max-width:760px){.tiles{grid-template-columns:1fr}}
+.tile{display:grid;gap:12px;text-decoration:none;align-content:start}
+.tile .media{aspect-ratio:3/2;overflow:hidden;background:var(--tint)}
+.tile img{width:100%;height:100%;object-fit:cover;display:block}
+@media (prefers-reduced-motion:no-preference){.tile img{transition:transform .5s ease}.tile:hover img{transform:scale(1.03)}}
+.tile h3{font-weight:500;font-size:22px;letter-spacing:-.015em;margin:0}
+.tile p{margin:0;color:var(--muted)}
+.tile:hover h3{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.back{font-family:var(--mono);font-size:13px;text-decoration:none;color:var(--muted)}
+.back:hover{color:var(--ink)}
+.view[hidden]{display:none}
+
+footer{margin-top:0;border-top:1px solid var(--ink)}
+#v-arbeid,#v-kat{padding-bottom:120px}
+footer .wrap{display:flex;justify-content:center;column-gap:28px;row-gap:8px;padding-top:20px;padding-bottom:56px}
+footer .who{font-weight:500;font-size:20px;letter-spacing:-.01em}
+footer .links{display:flex;flex-wrap:wrap;gap:6px 24px;color:var(--muted)}
+footer a{text-decoration:underline;text-underline-offset:3px}
+@media (max-width:760px){footer .wrap{grid-template-columns:1fr}}
 
 /* Kort */
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px 28px}
 @media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){.grid{grid-template-columns:1fr;gap:40px}}
 .card{display:grid;gap:12px;align-content:start;text-decoration:none;color:inherit;cursor:pointer;background:none;border:0;padding:0;text-align:left;font:inherit}
-.card .media{aspect-ratio:4/3;overflow:hidden;background:var(--tint)}
+.card .media{aspect-ratio:3/2;overflow:hidden;background:var(--tint)}
 .card .media img{width:100%;height:100%;object-fit:cover;display:block}
 @media (prefers-reduced-motion:no-preference){.card .media img{transition:transform .5s ease}.card:hover .media img{transform:scale(1.03)}}
 .card .kicker{color:var(--muted);margin:4px 0 0}
@@ -63,9 +121,33 @@ header{padding:72px 0 56px;display:grid;gap:28px}
 .mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px;height:100%}
 .mosaic img{width:100%;height:100%;object-fit:cover;display:block}
 
-.panel[hidden]{display:none}
 
-footer{padding:96px 0 48px;color:var(--muted)}
+.stat{height:100%;display:grid;align-content:end;gap:6px;padding:24px;background:var(--ink);color:var(--paper)}
+.stat b{font-weight:500;font-size:clamp(56px,7vw,88px);line-height:.95;letter-spacing:-.04em}
+.stat span{font-family:var(--mono);font-size:13px;opacity:.75}
+.stat.photo{position:relative;background:#000 center/cover no-repeat}
+.stat.photo::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0) 60%)}
+.stat.photo>*{position:relative}
+.stat.photo b,.stat.photo span{color:#fff}
+.shots{display:grid;gap:12px}
+.shots.ads{grid-template-columns:repeat(3,1fr);align-items:start}
+.shots.lp{grid-template-columns:repeat(2,1fr);align-items:start}
+@media (max-width:640px){.shots.ads,.shots.lp{grid-template-columns:1fr}}
+.shots img{width:100%;height:auto;display:block;border:1px solid var(--line)}
+.case .note{font-size:14px;color:var(--muted);margin-top:8px}
+.grid.two{grid-template-columns:repeat(2,1fr)}
+@media (max-width:560px){.grid.two{grid-template-columns:1fr}}
+.case{display:grid;gap:28px}
+.case>p,.case>div>p,.case>div>ul{max-width:72ch}
+.case .lead{font-weight:500;font-size:19px;line-height:1.45;margin:0}
+.case h3{font-weight:500;font-size:15px;margin:0 0 6px;letter-spacing:0}
+.case p{margin:0}
+.case ul{margin:0;padding-left:1.1em;display:grid;gap:4px}
+.results{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:20px 20px;align-items:start;margin:4px 0 0;padding:20px 0 0;border-top:1px solid var(--line);max-width:none}
+.results div{display:grid;gap:4px}
+.results b{font-weight:500;font-size:34px;letter-spacing:-.03em;line-height:1}
+.results span{font-size:14px;color:var(--muted);line-height:1.35}
+.panel[hidden]{display:none}
 
 /* Dialog */
 dialog{border:0;padding:0;background:var(--paper);color:var(--ink);width:min(1100px,94vw);max-height:90vh}
@@ -86,43 +168,332 @@ dialog::backdrop{background:rgba(0,0,0,.6)}
 .list a span{font-weight:500;line-height:1.3}
 .list a:hover span{text-decoration:underline;text-underline-offset:3px}
 
+/* Redigering (kun eier) */
+[data-editing] [data-edit]{outline:1px dashed var(--ink);outline-offset:4px;cursor:text}
+[data-editing] [data-edit]:focus{outline-style:solid;background:var(--tint)}
+[data-editing] .card{cursor:default}
+.editbar{position:fixed;right:16px;bottom:16px;z-index:50;display:flex;gap:6px;align-items:center;background:var(--paper);border:1px solid var(--ink);padding:6px}
+.editbar button{font:13px var(--mono);border:1px solid var(--ink);background:transparent;color:var(--ink);padding:7px 12px;cursor:pointer}
+.editbar button.primary{background:var(--ink);color:var(--paper)}
+.editbar .msg{font:12px var(--mono);color:var(--muted);padding:0 6px}
+
+/* Redigering (kun eier) */
+[data-editing] [data-edit]{outline:1px dashed currentColor;outline-offset:4px;cursor:text}
+[data-editing] [data-edit]:focus{outline-style:solid}
+.editbar{position:fixed;right:16px;bottom:16px;z-index:50;display:flex;gap:6px;align-items:center;background:var(--paper);border:1px solid var(--ink);padding:6px}
+.editbar button{font:13px var(--mono);border:1px solid var(--ink);background:transparent;color:var(--ink);padding:7px 12px;cursor:pointer}
+.editbar button.primary{background:var(--ink);color:var(--paper)}
+.editbar .msg{font:12px var(--mono);color:var(--muted);padding:0 6px}
+.top{transition:box-shadow .3s ease}
+.top.scrolled{box-shadow:0 1px 0 var(--line),0 8px 24px rgba(0,0,0,.05)}
+
+/* ===== Versjon 2: lys grå, tynne linjer, elementer fra mal ===== */
+:root{--paper:#F3F3F1;--ink:#111111;--muted:#6A6A66;--line:#D5D5D0;--tint:#E9E9E6}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#F3F3F1;--ink:#111111;--muted:#6A6A66;--line:#D5D5D0;--tint:#E9E9E6;color-scheme:light}}
+:root[data-theme="dark"]{--paper:#F3F3F1;--ink:#111111;--muted:#6A6A66;--line:#D5D5D0;--tint:#E9E9E6;color-scheme:light}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.top{position:fixed;top:0;left:0;right:0;background:transparent;border:0;pointer-events:none}
+.top .wrap{height:auto;padding-top:20px}
+.top.scrolled{box-shadow:none}
+.nav.box{pointer-events:auto;display:flex;gap:0;background:var(--paper);border:1px solid var(--line)}
+.nav.box a{padding:12px 20px;border:0;border-left:1px solid var(--line);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.nav.box a:first-child{border-left:0}
+.nav.box a[aria-current="page"]{color:var(--ink);border-bottom:0;background:var(--tint)}
+.label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:0}
+
+.hero2{position:relative;min-height:100vh;min-height:100svh;background:#222 center/cover no-repeat;color:#fff;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.marquee{white-space:nowrap;overflow:hidden;line-height:1.1}
+.marquee .run{display:inline-flex}
+.marquee span{display:inline-flex;align-items:center;gap:.5em;padding-right:.5em}
+.marquee i{font-style:normal;font-size:.35em}
+.m1{font-weight:500;font-size:clamp(44px,8vw,112px);letter-spacing:-.03em}
+.m2{font-weight:500;font-size:clamp(40px,7vw,96px);letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1.5px #fff}
+.m2 i{color:#fff;-webkit-text-stroke:0}
+@media (prefers-reduced-motion:no-preference){
+  .m1 .run{animation:mq 38s linear infinite}
+  .m2 .run{animation:mq 46s linear infinite reverse}
+  @keyframes mq{to{transform:translateX(-50%)}}
+}
+.hero-links{position:absolute;left:0;right:0;bottom:44px;display:flex;justify-content:center;align-items:center;gap:22px;font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+.hero-links button{all:unset;cursor:pointer;color:#fff;padding:8px 2px;border-bottom:1px solid rgba(255,255,255,.45)}
+.hero-links button:hover{border-bottom-color:#fff}
+.hero-links button:focus-visible{outline:2px solid #fff;outline-offset:4px}
+.hero-links i{font-style:normal}
+
+.sec{border-top:1px solid var(--line)}
+.frame{border-left:1px solid var(--line);border-right:1px solid var(--line);padding-top:clamp(56px,7vw,96px);padding-bottom:clamp(56px,7vw,96px);display:grid;grid-template-columns:1fr 3fr;column-gap:32px;row-gap:24px;align-items:start}
+@media (max-width:820px){.frame{grid-template-columns:1fr}}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (max-width:820px){.cards{grid-template-columns:1fr}}
+.pcard{position:relative;display:block;aspect-ratio:3/4;overflow:hidden;border:1px solid var(--line);text-decoration:none;color:#fff;background:#222}
+.pcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@media (prefers-reduced-motion:no-preference){.pcard img{transition:transform .6s ease}.pcard:hover img{transform:scale(1.04)}}
+.pcard .ov{position:absolute;inset:auto 0 0 0;padding:22px;display:grid;gap:6px;background:linear-gradient(to top,rgba(0,0,0,.7),rgba(0,0,0,0))}
+.pcard .t{font-weight:500;font-size:clamp(20px,2vw,26px);letter-spacing:-.015em;line-height:1.15}
+.pcard .s{font-size:12px;opacity:.85}
+.pcard:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+.about2{grid-template-columns:1fr 1fr;column-gap:0;padding-top:0;padding-bottom:0}
+.about-text{padding:clamp(40px,5vw,72px) clamp(24px,4vw,56px) clamp(40px,5vw,72px) 0;display:grid;gap:24px;align-content:start;border-right:1px solid var(--line)}
+.about-body{margin:0;font-weight:500;font-size:clamp(17px,1.55vw,21px);line-height:1.45;letter-spacing:-.005em}
+.about-text .links{display:flex;flex-wrap:wrap;gap:6px 22px;margin:0;color:var(--muted)}
+.about-text .links a{text-decoration:underline;text-underline-offset:3px}
+.about-media{min-height:100%;aspect-ratio:4/5;overflow:hidden;background:var(--tint)}
+.about-media img,.about-media video{width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:820px){.about2{grid-template-columns:1fr}.about-text{border-right:0;padding-right:0}}
+
+.frame .acc{border-top:1px solid var(--line)}
+.frame .acc details{border-bottom:1px solid var(--line)}
+.frame .acc ul{list-style:disc;padding-left:1.1em;color:var(--ink)}
+#v-arbeid .page-head{display:grid;gap:12px}
+#v-arbeid .cards{margin-top:8px}
+footer{border-top:1px solid var(--line)}
+
+/* ===== Versjon 3: mørk bakgrunn som i malen ===== */
+:root,:root[data-theme="dark"]{--paper:#1A1C23;--ink:#F4F4F2;--muted:#9C9EA6;--line:rgba(255,255,255,.12);--tint:#22252D;color-scheme:dark}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--paper:#1A1C23;--ink:#F4F4F2;--muted:#9C9EA6;--line:rgba(255,255,255,.12);--tint:#22252D;color-scheme:dark}}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#1A1C23;--ink:#F4F4F2;--muted:#9C9EA6;--line:rgba(255,255,255,.12);--tint:#22252D;color-scheme:dark}}
+:root[data-theme="light"]{--paper:#1A1C23;--ink:#F4F4F2;--muted:#9C9EA6;--line:rgba(255,255,255,.12);--tint:#22252D;color-scheme:dark}
+.pcard{aspect-ratio:auto;background:transparent;color:var(--ink);border:1px solid var(--line);padding:16px 16px 26px;display:grid;gap:0;align-content:start}
+.pcard .pimg{display:block;aspect-ratio:3/2;overflow:hidden;background:var(--tint)}
+.pcard .pimg img{position:static;width:100%;height:100%;object-fit:cover;display:block}
+.pcard .pt{margin-top:22px;font-weight:500;font-size:clamp(17px,1.5vw,21px);letter-spacing:-.01em;line-height:1.2;white-space:nowrap}
+.pcard .ps{margin-top:8px;color:var(--muted);font-size:15px;line-height:1.45}
+.pcard:hover{border-color:rgba(255,255,255,.35)}
+.pcard:hover .pt{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.nav.box a[aria-current="page"]{background:rgba(255,255,255,.08)}
+.btn{background:var(--ink);color:var(--paper)}
+.editbar{background:var(--paper)}
+
+/* ===== Versjon 4: Montserrat (som i malen), meny uten bakgrunn ===== */
+:root{--sans:"Montserrat","Helvetica Neue",Arial,sans-serif;--mono:"Montserrat","Helvetica Neue",Arial,sans-serif}
+.m1{font-weight:700;letter-spacing:-.02em}
+.m2{font-weight:600;letter-spacing:-.02em}
+.page-head h1,.pcard .pt,.card h3,.frame .acc summary,.dlg-head h2{font-weight:600;letter-spacing:-.01em}
+.about-body{font-weight:500}
+.label,.hero-links,.nav.box a{letter-spacing:.22em}
+.nav.box{background:transparent;border:0;gap:28px}
+.nav.box a,.nav.box a:first-child{background:transparent;border:0;padding:6px 0;color:rgba(255,255,255,.7);border-bottom:1px solid transparent;transition:color .2s ease,border-color .2s ease}
+.nav.box a:hover{color:#fff;border-bottom-color:#fff}
+.nav.box a[aria-current="page"]{background:transparent;color:#fff}
+.pcard .pimg{aspect-ratio:1/1}
+
+/* ===== Versjon 6 (forhåndsvisning): roligere og lysere ===== */
+:root,:root[data-theme="dark"],:root[data-theme="light"]{--paper:#FAFAF8;--ink:#141414;--muted:#6E6E6A;--line:#E2E2DE;--tint:#EFEFEC;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#FAFAF8;--ink:#141414;--muted:#6E6E6A;--line:#E2E2DE;--tint:#EFEFEC;color-scheme:light}}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--paper:#FAFAF8;--ink:#141414;--muted:#6E6E6A;--line:#E2E2DE;--tint:#EFEFEC;color-scheme:light}}
+.hero2{background-color:#14161B}
+.m1{font-weight:600;font-size:clamp(44px,7.5vw,104px)}
+@media (prefers-reduced-motion:no-preference){.m1 .run{animation-duration:60s}}
+.hero-sub{margin:18px 0 0;text-align:center;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.nav.box a,.nav.box a:first-child{color:var(--muted)}
+.nav.box a:hover{color:var(--ink);border-bottom-color:var(--ink)}
+.nav.box a[aria-current="page"]{color:var(--ink)}
+body.on-hero .nav.box a{color:rgba(255,255,255,.7)}
+body.on-hero .nav.box a:hover,body.on-hero .nav.box a[aria-current="page"]{color:#fff;border-bottom-color:#fff}
+.frame{border-left:0;border-right:0}
+.pcard{border:0;padding:0}
+.pcard:hover{border-color:transparent}
+.pcard .pimg{aspect-ratio:4/5}
+.pcard .pt{margin-top:16px}
+.om6{display:grid;grid-template-columns:1fr 1.4fr;column-gap:clamp(32px,6vw,96px);row-gap:48px;padding-top:clamp(56px,7vw,96px);padding-bottom:clamp(56px,7vw,96px);align-items:start}
+@media (max-width:820px){.om6{grid-template-columns:1fr}}
+.om-left{display:grid;gap:22px;justify-items:start}
+.avatar6{width:132px;height:132px;border-radius:50%;object-fit:cover;display:block;box-shadow:0 0 0 1px var(--line)}
+.om-body{margin:0;font-weight:400;font-size:clamp(17px,1.4vw,19px);line-height:1.6;max-width:44ch}
+.om-left .links{display:flex;flex-wrap:wrap;gap:6px 22px;margin:0;color:var(--muted)}
+.om-left .links a{text-decoration:underline;text-underline-offset:3px}
+.om-right{display:grid;gap:22px}
+.om-right .acc{border-top:1px solid var(--line)}
+.om-right .acc details{border-bottom:1px solid var(--line)}
+.om-right .acc summary{font-weight:500;font-size:18px}
+.om-right .acc ul{list-style:disc;padding-left:1.1em}
+footer{border-top:1px solid var(--line)}
+.hero-me{background:#14161B}
+.hero-me::before{content:"";position:absolute;inset:-40px;background:url(img/portrett.jpg) 50% 30%/cover no-repeat;filter:blur(14px) grayscale(.2);transform:scale(1.05)}
+.hero-me::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(12,13,17,.55),rgba(12,13,17,.7))}
+.hero-me>*{position:relative;z-index:1}
+.hero-me .hero-links{position:absolute}
+
+/* Versjon 6b: hvit topp med rundt portrett, hva gjør jeg i rutenett */
+:root,:root[data-theme="dark"],:root[data-theme="light"]{--paper:#FFFFFF}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#FFFFFF}}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--paper:#FFFFFF}}
+.intro-top .wrap{padding-top:clamp(96px,12vw,140px);padding-bottom:clamp(56px,8vw,88px);display:grid;justify-items:center;text-align:center;gap:20px}
+.intro-top .avatar{width:140px;height:140px;border-radius:50%;object-fit:cover;display:block;box-shadow:0 0 0 1px var(--line)}
+.intro-top h1{font-weight:600;font-size:clamp(34px,5vw,58px);line-height:1.05;letter-spacing:-.02em;margin:4px 0 0;text-wrap:balance}
+.intro-top .bio{margin:0;max-width:62ch;font-size:clamp(16px,1.5vw,18px);line-height:1.65;text-wrap:pretty}
+.intro-top .links{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 24px;margin:4px 0 0;color:var(--muted)}
+.intro-top .links a{text-decoration:underline;text-underline-offset:3px}
+.frame .acc ul{list-style-position:inside;padding-left:0;margin-left:0}
+.frame .acc{border-top:1px solid var(--line)}
+.top{background:var(--paper);pointer-events:auto}
+.top .wrap{padding-top:16px;padding-bottom:16px}
+.top.scrolled{box-shadow:0 1px 0 var(--line)}
+.card .media.ext{position:relative}
+.ext-badge{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--paper);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.15);transition:transform .2s ease}
+.card:hover .ext-badge{transform:translate(2px,-2px)}
+.photos .ph{all:unset;display:block;cursor:zoom-in;margin:0 0 10px;break-inside:avoid}
+.photos .ph img{margin:0;transition:opacity .2s ease}
+.photos .ph:hover img{opacity:.85}
+.photos .ph:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+dialog.lb{width:100vw;height:100vh;max-width:100vw;max-height:100vh;margin:0;padding:0;border:0;background:rgba(10,10,12,.96);color:#fff}
+dialog.lb::backdrop{background:rgba(0,0,0,.6)}
+dialog.lb[open]{display:grid;grid-template-columns:72px 1fr 72px;align-items:center}
+.lb-fig{margin:0;display:grid;justify-items:center;gap:12px;grid-column:2}
+.lb-fig img{max-width:100%;max-height:calc(100vh - 120px);object-fit:contain;display:block}
+.lb-fig figcaption{font-size:12px;letter-spacing:.18em;opacity:.7}
+.lb-nav{all:unset;cursor:pointer;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-size:34px;line-height:1;color:#fff;border:1px solid rgba(255,255,255,.35);justify-self:center;padding-bottom:4px;box-sizing:border-box}
+.lb-nav:hover{background:rgba(255,255,255,.12)}
+.lb-prev{grid-column:1;grid-row:1}.lb-next{grid-column:3;grid-row:1}
+.lb-fig{grid-row:1}
+.lb-close{all:unset;cursor:pointer;position:absolute;top:18px;right:22px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#fff;opacity:.8}
+.lb-close:hover{opacity:1}
+.lb-nav:focus-visible,.lb-close:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@media (max-width:600px){dialog.lb[open]{grid-template-columns:44px 1fr 44px}.lb-nav{width:38px;height:38px;font-size:26px}}
+.icon-card{border:1px solid var(--line);padding:0 0 26px}
+.icon-card .picon{aspect-ratio:4/3;display:grid;place-items:center;background:transparent;border-bottom:1px solid var(--line);color:var(--ink)}
+.icon-card .picon svg{width:84px;height:84px;transition:transform .4s ease}
+.icon-card:hover .picon svg{transform:translateY(-3px)}
+.icon-card .pt,.icon-card .ps{padding:0 22px}
+.icon-card:hover{border-color:var(--ink)}
+/* Ikoner: svak gråtone og animasjon */
+.icon-card .picon{background:#F1F1EE}
+.icon-card:hover .picon{background:#ECECE8}
+.icon-card:hover .picon svg{transform:none}
+@media (prefers-reduced-motion:no-preference){
+  .ic-text .ln{stroke-dasharray:1;stroke-dashoffset:0}
+  .ic-text .pen{transform-box:fill-box;transform-origin:20% 80%;animation:penIdle 3.2s ease-in-out infinite}
+  @keyframes penIdle{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(-2px,1px) rotate(-6deg)}}
+  .icon-card:hover .ic-text .ln{animation:write 1.4s ease both}
+  .icon-card:hover .ic-text .l2{animation-delay:.25s}
+  .icon-card:hover .ic-text .l3{animation-delay:.5s}
+  @keyframes write{0%{stroke-dashoffset:1}100%{stroke-dashoffset:0}}
+  .icon-card:hover .ic-text .pen{animation:penWrite .7s ease-in-out infinite}
+  @keyframes penWrite{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(-5px,2px) rotate(-10deg)}}
+  .ic-mega .wv{opacity:.15;animation:wave 2.4s ease-in-out infinite}
+  .ic-mega .w2{animation-delay:.3s}.ic-mega .w3{animation-delay:.6s}
+  @keyframes wave{0%,100%{opacity:.15}40%{opacity:1}}
+  .ic-mega .horn{transform-box:fill-box;transform-origin:30% 50%}
+  .icon-card:hover .ic-mega .wv{animation-duration:1s}
+  .icon-card:hover .ic-mega .horn{animation:shout 1s ease-in-out infinite}
+  @keyframes shout{0%,100%{transform:rotate(0)}50%{transform:rotate(-5deg) scale(1.03)}}
+  .ic-cam .iris{transform-box:fill-box;transform-origin:center;animation:focus 3s ease-in-out infinite}
+  @keyframes focus{0%,100%{transform:scale(1)}50%{transform:scale(1.5)}}
+  .ic-cam .led{animation:blink 3s steps(1) infinite}
+  @keyframes blink{0%,70%{opacity:1}75%,85%{opacity:.1}90%{opacity:1}}
+  .icon-card:hover .ic-cam .flash{animation:flash 1.6s ease-out infinite}
+  @keyframes flash{0%,60%{opacity:0}65%{opacity:.18}100%{opacity:0}}
+  .icon-card:hover .ic-cam .iris{animation-duration:.8s}
+}
+.case-page{display:grid;gap:8px;max-width:960px}
+.case-page .case-kicker{margin:0;color:var(--muted)}
+.case-page .case-role{margin:0 0 32px;color:var(--muted);font-size:17px}
+.case-page .case{gap:36px}
+.frame .acc ul{list-style:none;padding-left:0;margin-left:0}
+.frame .acc ul li{position:relative;padding-left:1.1em}
+.frame .acc ul li::before{content:"•";position:absolute;left:0;top:0}
 .hidden{display:none !important}
 </style>
 </head>
 <body>
-<div class="wrap">
 
-<header>
-  <h1 class="name" data-edit="name">Heidi F. Enger Otone</h1>
-  <p class="intro" data-edit="intro">Jeg finner historiene, intervjuer menneskene, skriver tekstene og tar bildene. Her er et utvalg av arbeidet mitt.</p>
-  <p class="meta-row mono"><span data-edit="tagline">Innhold og kommunikasjon</span><a href="mailto:heidi.enger@gmail.com">heidi.enger@gmail.com</a><span>Oslo</span></p>
-</header>
+<header class="top"><div class="wrap">
+  <nav class="nav box" aria-label="Hovedmeny">
+    <a href="#hjem" data-route="hjem">Hjem</a>
+    <a href="#arbeid" data-route="arbeid">Arbeid</a>
+  </nav>
+</div></header>
 
-<nav class="tabs" role="tablist" aria-label="Velg visning">
-  <button class="tab" role="tab" id="tab-tekster" aria-controls="tekster" aria-selected="true">Tekster</button>
-  <button class="tab" role="tab" id="tab-foto" aria-controls="foto" aria-selected="false" tabindex="-1">Foto</button>
-  <button class="tab" role="tab" id="tab-alt" aria-controls="alt" aria-selected="false" tabindex="-1">Alt</button>
-</nav>
+<main>
+<!-- HJEM -->
+<div class="view" id="v-hjem">
+  <section class="intro-top" id="s-om"><div class="wrap">
+    <img class="avatar" src="img/portrett.jpg" alt="Portrett av Heidi F. Enger Otone">
+    <h1 data-edit="hero-name2">Heidi F. Enger Otone</h1>
+    <p class="bio" data-edit="intro4">Jeg jobber med kommunikasjon, markedsføring og innhold, i hele løpet fra planlegging til produksjon. Jeg er god på å gjøre komplekst fagstoff enkelt, gjøre innsikt om til budskap og tilpasse kommunikasjon til ulike målgrupper. Jeg har lang erfaring fra finansbransjen, hvor jeg blant annet har hatt ansvar for markedssamarbeid med medlemsorganisasjoner, distributører og andre partnere.</p>
+    <p class="links mono"><a href="https://www.linkedin.com/in/heidienger" target="_blank" rel="noopener">LinkedIn ↗</a><a href="mailto:heidi.enger@gmail.com">heidi.enger@gmail.com</a><span>Oslo</span></p>
+  </div></section>
 
-<section class="panel" id="tekster" role="tabpanel" aria-labelledby="tab-tekster">
-  <div class="grid" data-slot="texts"></div>
-</section>
-<section class="panel" id="foto" role="tabpanel" aria-labelledby="tab-foto" hidden>
-  <div class="grid" data-slot="photos"></div>
-</section>
-<section class="panel" id="alt" role="tabpanel" aria-labelledby="tab-alt" hidden>
-  <div class="grid" data-slot="all"></div>
-</section>
+  <section class="sec" id="s-arbeid"><div class="wrap frame">
+    <p class="label mono">/Tidligere arbeid</p>
+    <div class="cards">
+      <a class="pcard icon-card" href="#tekster"><span class="pimg picon" aria-hidden="true"><svg class="ic ic-text" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8h22l10 10v38H16z"/><path d="M38 8v10h10"/><path class="ln l1" pathLength="1" d="M22 28h20"/><path class="ln l2" pathLength="1" d="M22 35h20"/><path class="ln l3" pathLength="1" d="M22 42h12"/><g class="pen"><path d="M42 50l12-12 3 3-12 12-4 1z"/></g></svg></span><span class="pt">Tekst og innhold</span><span class="ps">Kundehistorier og artikler</span></a>
+      <a class="pcard icon-card" href="#kampanje"><span class="pimg picon" aria-hidden="true"><svg class="ic ic-mega" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><g class="horn"><path d="M10 27v10h8l20 12V15L18 27z"/><path d="M18 37l4 14h6l-3-12"/></g><path class="wv w1" d="M45 25c3 2 3 12 0 14"/><path class="wv w2" d="M50 20c6 5 6 19 0 24"/><path class="wv w3" d="M55 15c9 8 9 26 0 34"/></svg></span><span class="pt">Kampanje og CRM</span><span class="ps">Partnermarkedsføring og nyhetsbrev</span></a>
+      <a class="pcard icon-card" href="#foto"><span class="pimg picon" aria-hidden="true"><svg class="ic ic-cam" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8 20h12l4-6h16l4 6h12v32H8z"/><circle class="lens" cx="32" cy="35" r="10"/><circle class="iris" cx="32" cy="35" r="4"/><path class="led" d="M48 26h3"/><rect class="flash" x="8" y="14" width="48" height="38" fill="currentColor" stroke="none" opacity="0"/></svg></span><span class="pt">Foto</span><span class="ps">Reportasje, arrangement og produkt</span></a>
+    </div>
+  </div></section>
 
-<footer class="mono">Heidi F. Enger Otone · Oslo</footer>
+  <section class="sec"><div class="wrap frame">
+    <p class="label mono">/Hva gjør jeg</p>
+    <div class="acc">
+          <details><summary data-edit="what1b">Innhold, kommunikasjon og historiefortelling</summary><ul>
+            <li data-edit="what-li1">Research til kundehistorier og finne intervjuobjekter.</li>
+            <li data-edit="what-li2">Artikler, kundehistorier og kampanjesider.</li>
+            <li data-edit="what-li18">Nyhetsbrev</li>
+            <li data-edit="what-li19">SoMe-poster</li>
+            <li data-edit="what-li3">Gjør komplekst fagstoff enkelt og forståelig</li>
+            <li data-edit="what-li4">Tilpasser budskap, språk og format til målgruppe og kanal</li>
+            <li data-edit="what-li5">Pressemeldinger</li>
+            <li data-edit="what-li6">Proaktiv mediekontakt og oppfølging</li>
+            <li data-edit="what-li7">Medieovervåking og -analyse</li></ul></details>
+          <details><summary data-edit="what2">Kampanjer og partnermarkedsføring</summary><ul>
+            <li data-edit="what-li8">Setter retning med årshjul og prioriteringer sammen med partnere</li>
+            <li data-edit="what-li9">Følger opp budsjett og mediemiks</li>
+            <li data-edit="what-li10">Samarbeider med reklame- og mediebyrå fra brief til lansering</li>
+            <li data-edit="what-li11">Bygger budskap på innsikt fra analyser og brukerundersøkelser</li></ul></details>
+          <details><summary data-edit="what3">CRM og nyhetsbrev</summary><ul>
+            <li data-edit="what-li12">Planlegger og skriver segmenterte nyhetsbrev og app-varsler</li>
+            <li data-edit="what-li13">A/B-tester emnefelt og budskap</li>
+            <li data-edit="what-li14">Følger opp resultater og bruker dem i neste runde</li></ul></details>
+          <details><summary data-edit="what4">Foto og video</summary><ul>
+            <li data-edit="what-li16b">Ansvarlig for fotoredaksjon og forvaltning av bilder</li>
+            <li data-edit="what-li20b">Oppsett og administrasjon av DAM (Digital Asset Management), inkludert leverandørkontakt</li>
+            <li data-edit="what-li21">Planlegging og gjennomføring av fotoopptak for profilbærende bilder og bilder til bildebank. Ansvar for kontakt og avtaler med fotografer og byråer.</li>
+            <li data-edit="what-li22">Foto og fotoredigering</li>
+            <li data-edit="what-li23">Video og enkel videoredigering</li>
+            <li data-edit="what-li17">Innhold til sosiale medier</li>
+          </ul></details>
+        </div>
+  </div></section>
 </div>
+
+<!-- ARBEID -->
+<div class="view" id="v-arbeid" hidden><div class="wrap">
+  <div class="page-head"><p class="label mono">/Tidligere arbeid</p><h1>Arbeid</h1></div>
+  <div class="cards">
+      <a class="pcard icon-card" href="#tekster"><span class="pimg picon" aria-hidden="true"><svg class="ic ic-text" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8h22l10 10v38H16z"/><path d="M38 8v10h10"/><path class="ln l1" pathLength="1" d="M22 28h20"/><path class="ln l2" pathLength="1" d="M22 35h20"/><path class="ln l3" pathLength="1" d="M22 42h12"/><g class="pen"><path d="M42 50l12-12 3 3-12 12-4 1z"/></g></svg></span><span class="pt">Tekst og innhold</span><span class="ps">Kundehistorier og artikler</span></a>
+      <a class="pcard icon-card" href="#kampanje"><span class="pimg picon" aria-hidden="true"><svg class="ic ic-mega" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><g class="horn"><path d="M10 27v10h8l20 12V15L18 27z"/><path d="M18 37l4 14h6l-3-12"/></g><path class="wv w1" d="M45 25c3 2 3 12 0 14"/><path class="wv w2" d="M50 20c6 5 6 19 0 24"/><path class="wv w3" d="M55 15c9 8 9 26 0 34"/></svg></span><span class="pt">Kampanje og CRM</span><span class="ps">Partnermarkedsføring og nyhetsbrev</span></a>
+      <a class="pcard icon-card" href="#foto"><span class="pimg picon" aria-hidden="true"><svg class="ic ic-cam" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8 20h12l4-6h16l4 6h12v32H8z"/><circle class="lens" cx="32" cy="35" r="10"/><circle class="iris" cx="32" cy="35" r="4"/><path class="led" d="M48 26h3"/><rect class="flash" x="8" y="14" width="48" height="38" fill="currentColor" stroke="none" opacity="0"/></svg></span><span class="pt">Foto</span><span class="ps">Reportasje, arrangement og produkt</span></a>
+    </div>
+</div></div>
+
+<!-- KATEGORI -->
+<div class="view" id="v-kat" hidden><div class="wrap">
+  <div class="page-head"><a class="back" href="#arbeid">← Alt arbeid</a><h1 id="kat-title" style="margin-top:20px"></h1></div>
+  <div class="grid" id="kat-grid"></div>
+</div></div>
+</main>
+
+<footer><div class="wrap">
+  <p class="links mono" style="margin:0"><a href="https://www.linkedin.com/in/heidienger" target="_blank" rel="noopener">LinkedIn ↗</a><a href="mailto:heidi.enger@gmail.com">heidi.enger@gmail.com</a></p>
+</div></footer>
 
 <dialog id="dlg" aria-labelledby="dlg-title"><div class="dlg">
   <div class="dlg-head"><div><p class="mono" id="dlg-kicker" style="margin:0;color:var(--muted)"></p><h2 id="dlg-title"></h2><p id="dlg-text"></p></div><button class="close" type="button" id="dlg-close">Lukk</button></div>
   <div id="dlg-body"></div>
 </div></dialog>
 
+<dialog id="lb" class="lb" aria-label="Bildefremvisning">
+  <button type="button" class="lb-close" id="lb-close">Lukk ✕</button>
+  <button type="button" class="lb-nav lb-prev" id="lb-prev" aria-label="Forrige bilde">‹</button>
+  <figure class="lb-fig"><img id="lb-img" alt=""><figcaption id="lb-count"></figcaption></figure>
+  <button type="button" class="lb-nav lb-next" id="lb-next" aria-label="Neste bilde">›</button>
+</dialog>
+
+
 <script>
+
 var SB="https://www.sparebank1.no/nb/bank/";
 var SERIES=[
   {id:"ung",title:"Forsikringene du trenger som ung",img:"img/c-ung.jpg",year:"2024",url:SB+"om-oss/nyheter/forsikringene-du-trenger-som-ung.html"},
@@ -131,28 +502,36 @@ var SERIES=[
   {id:"barna",title:"Forsikringene du trenger etter barna har flyttet ut",img:"img/c-barna.jpg",year:"2022",url:SB+"om-oss/nyheter/forsikringene-du-trenger-etter-barna-har-flyttet-ut.html"}
 ];
 var WORKS={
-  vann:{kind:"text",kicker:"Kundehistorie · Fremtind · 2024",title:"Klok av skade: sikrer seg mot vannlekkasje",role:"Fant casepersoner, intervju, tekst og foto",img:"img/vannlekkasje.jpg",
+  lo:{kind:"case",kicker:"Kampanje og CRM · Fremtind og LOfavør · 2025–2026",title:"Fra passive medlemmer til nye kunder",role:"Markedssamarbeid, budskapsutvikling, nyhetsbrev og kampanje",
+        stat:"+35 %",statLabel:"flere kunder i målgruppen",img:"img/lo-cover.jpg"},
+  vann:{kind:"text",kicker:"Kundehistorie · Fremtind · 2024",title:"Klok av (vann)skade: sikrer seg mot vannlekkasje",role:"Fant casepersoner, intervju, tekst og foto",img:"img/vannlekkasje.jpg",
         url:SB+"privat/forsikring/kundehistorier/sikrer-seg-mot-vannlekkasje-klok-av-skade.html"},
   barn:{kind:"text",kicker:"Kundehistorie · Fremtind · 2025",title:"Barneforsikring som trygghet når livet tar en ny vending",role:"Fant casepersoner, intervju og tekst",img:"img/c-barneforsikring.jpg",
         url:SB+"om-oss/nyheter/barneforsikring-okonomisk-trygghet-firebarnsfamilien.html"},
   serie:{kind:"series",kicker:"Artikkelserie · Fremtind · 2022–2024",title:"Livsløpserien: forsikringene du trenger gjennom livet",role:"Idé, konsept og tekst · 4 artikler",
         text:"En serie som tar utgangspunkt i hvor leseren er i livet, ikke i produktene: hva du trenger nå, og hva du kan vente med."},
-  f_vann:{kind:"photo",kicker:"Reportasje · Fremtind · 2024",title:"Kundehistorie: vannlekkasje",role:"Portrett og situasjonsbilder",img:"img/foto-portrett.jpg",
-        photos:["foto-portrett","vannlekkasje","foto-paret","foto-doren"]},
+  f_vann:{kind:"photo",kicker:"Reportasje · Fremtind · 2024",title:"Kundehistorie: vannlekkasje",role:"Portrett og situasjonsbilder",img:"img/foto-portrett.jpg",pos:"50% 35%",
+        campaign:["lo"],
+  photos:["foto-portrett","vannlekkasje","foto-paret","foto-doren"]},
   f_nyd:{kind:"photo",kicker:"Reportasje",title:"Norsk Yrkesdykkerskole",role:"En dag med dykkerelevene",img:"img/nyd-1.jpg",
-        photos:["nyd-1","nyd-2","nyd-3","nyd-4","nyd-5","nyd-6","nyd-7","nyd-8","nyd-9"]},
+        campaign:["lo"],
+  photos:["nyd-1","nyd-2","nyd-3","nyd-4","nyd-5","nyd-6","nyd-7","nyd-8","nyd-9"]},
   f_vespa:{kind:"photo",kicker:"Arrangement",title:"Vespa: «Do you Vespa?»",role:"Stemning, folk og detaljer",img:"img/vespa-1.jpg",
-        photos:["vespa-1","vespa-2","vespa-3","vespa-4","vespa-5","vespa-6"]},
-  f_oras:{kind:"photo",kicker:"Produkt og kampanje",title:"Oras",role:"Kjøkkenkraner med og uten modell",img:"img/oras-1.jpg",
-        photos:["oras-1","oras-2","oras-3","oras-4"]}
+        campaign:["lo"],
+  photos:["vespa-1","vespa-2","vespa-3","vespa-4","vespa-5","vespa-6"]},
+  f_oras:{kind:"photo",kicker:"Produkt og kampanje",title:"Oras",role:"Kjøkkenkraner med og uten modell",img:"img/oras-1.jpg",pos:"50% 0%",
+        campaign:["lo"],
+  photos:["oras-1","oras-2","oras-3","oras-4"]}
 };
 SERIES.forEach(function(s,i){
   WORKS["s_"+s.id]={kind:"text",kicker:"Livsløpserien "+(i+1)+"/4 · Fremtind · "+s.year,title:s.title,role:"Idé og tekst",img:s.img,url:s.url};
 });
 var SLOTS={
+  featured:["lo","vann","barn","serie"],
   texts:["vann","barn","s_ung","s_etablering","s_familien","s_barna"],
+  campaign:["lo"],
   photos:["f_vann","f_nyd","f_vespa","f_oras"],
-  all:["vann","barn","serie","f_vann","f_nyd","f_vespa","f_oras"]
+  all:["lo","vann","barn","serie","f_vann","f_nyd","f_vespa","f_oras"]
 };
 
 function el(tag,attrs,html){var e=document.createElement(tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(html!=null)e.innerHTML=html;return e;}
@@ -161,52 +540,147 @@ function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp
 function card(key){
   var w=WORKS[key], c;
   if(w.kind==="text"){ c=el("a",{class:"card",href:w.url,target:"_blank",rel:"noopener"}); }
+  else if(w.kind==="case"){ c=el("a",{class:"card",href:"#lofavor"}); }
   else { c=el("button",{class:"card",type:"button","data-open":key}); }
-  var media = w.kind==="series"
+  var media = w.kind==="case"
+    ? '<div class="media"><div class="stat photo" style="background-image:url('+w.img+')"><b>'+esc(w.stat)+'</b><span>'+esc(w.statLabel)+'</span></div></div>'
+    : w.kind==="series"
     ? '<div class="media"><div class="mosaic">'+SERIES.map(function(s){return '<img src="'+s.img+'" alt="" loading="lazy">';}).join("")+'</div></div>'
-    : '<div class="media"><img src="'+w.img+'" alt="" loading="lazy"></div>';
+    : '<div class="media"><img src="'+w.img+'" alt="" loading="lazy" style="object-position:'+(w.pos||'50% 50%')+'"></div>';
+  if(w.kind==="text"){
+    media = media.replace('<div class="media">','<div class="media ext"><span class="ext-badge" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 3h8v8M13 3L3 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>');
+    c.setAttribute("aria-label", w.title+" (åpnes på sparebank1.no i ny fane)");
+  }
   c.innerHTML = media
     + '<p class="kicker mono" data-edit="'+key+'-kicker">'+esc(w.kicker)+'</p>'
     + '<h3 data-edit="'+key+'-title">'+esc(w.title)+'</h3>'
     + '<p class="role" data-edit="'+key+'-role">'+esc(w.role)+'</p>';
   return c;
 }
+
+
+
 document.querySelectorAll("[data-slot]").forEach(function(g){
   SLOTS[g.dataset.slot].forEach(function(k){ g.appendChild(card(k)); });
 });
-
-/* Faner */
-var tabs=[].slice.call(document.querySelectorAll(".tab"));
-function show(id,focus){
-  tabs.forEach(function(t){var on=t.getAttribute("aria-controls")===id;t.setAttribute("aria-selected",on);t.tabIndex=on?0:-1;if(on&&focus)t.focus();});
-  document.querySelectorAll(".panel").forEach(function(p){p.hidden=p.id!==id;});
+var CATS={tekster:{title:"Tekst og innhold",slot:"texts"},kampanje:{title:"Kampanje og CRM",slot:"campaign"},foto:{title:"Foto",slot:"photos"}};
+var views={hjem:document.getElementById("v-hjem"),arbeid:document.getElementById("v-arbeid"),kat:document.getElementById("v-kat")};
+function route(){
+  var h=(location.hash||"#hjem").slice(1), v="hjem", nav="hjem";
+  if(h==="arbeid"){v="arbeid";nav="arbeid";}
+  else if(h==="lofavor"){v="kat";nav="arbeid";
+    document.querySelector("#v-kat .back").setAttribute("href","#kampanje");
+    document.querySelector("#v-kat .back").textContent="← Kampanje og CRM";
+    if(typeof CASE_HTML==="undefined"){setTimeout(route,0);return;}
+    var w=WORKS.lo;
+    var kt=document.getElementById("kat-title"); kt.textContent=w.title; kt.setAttribute("data-edit","case-title");
+    var g=document.getElementById("kat-grid");
+    g.className="case-page";
+    g.innerHTML='<p class="mono case-kicker" data-edit="case-kicker">'+esc(w.kicker)+'</p><p class="case-role" data-edit="case-role">'+esc(w.role)+'</p>'+CASE_HTML;
+    if(window.__applySaved) window.__applySaved();
+  }
+  else if(CATS[h]){v="kat";nav="arbeid";
+    document.querySelector("#v-kat .back").setAttribute("href","#arbeid");
+    document.querySelector("#v-kat .back").textContent="← Alt arbeid";
+    document.getElementById("kat-title").removeAttribute("data-edit");
+    document.getElementById("kat-title").textContent=CATS[h].title;
+    var g=document.getElementById("kat-grid"); g.innerHTML="";
+    SLOTS[CATS[h].slot].forEach(function(k){g.appendChild(card(k));});
+    g.className="grid"+(SLOTS[CATS[h].slot].length<3?" two":"");
+    if(window.__applySaved) window.__applySaved();
+  }
+  for(var k in views) views[k].hidden=(k!==v);
+  document.querySelectorAll(".nav a").forEach(function(a){ if(a.dataset.route===nav)a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
+  window.scrollTo(0,0);
 }
-tabs.forEach(function(t,i){
-  t.addEventListener("click",function(){show(t.getAttribute("aria-controls"));try{history.replaceState(null,"","#"+t.getAttribute("aria-controls"));}catch(e){}});
-  t.addEventListener("keydown",function(e){
-    if(e.key!=="ArrowRight"&&e.key!=="ArrowLeft")return;
-    var n=tabs[(i+(e.key==="ArrowRight"?1:tabs.length-1))%tabs.length];show(n.getAttribute("aria-controls"),true);
-  });
-});
-function fromHash(){var h=(location.hash||"").slice(1);if(["tekster","foto","alt"].indexOf(h)>-1)show(h);}
-fromHash();window.addEventListener("hashchange",fromHash);
+window.addEventListener("hashchange",route); route();
 
+
+/* Menyen får en svak skygge når man har scrollet */
+(function(){var t=document.querySelector('.top');function f(){t.classList.toggle('scrolled',window.scrollY>8);}window.addEventListener('scroll',f,{passive:true});window.addEventListener('hashchange',function(){setTimeout(f,50);});f();})();
+
+
+/* Knapper i toppbildet scroller til seksjonene */
+document.querySelectorAll('[data-scroll]').forEach(function(b){b.addEventListener('click',function(){var t=document.getElementById(b.dataset.scroll);if(t)t.scrollIntoView({behavior:(matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth')});});});
+
+
+(function(){var h=document.querySelector('.hero2');function f(){var on=h&&!h.closest('.view').hidden&&h.getBoundingClientRect().bottom>60;document.body.classList.toggle('on-hero',!!on);}window.addEventListener('scroll',f,{passive:true});window.addEventListener('hashchange',function(){setTimeout(f,60);});f();})();
+
+
+/* Bildefremvisning for fotoprosjekter */
+var CUR=null;
+(function(){
+  var lb=document.getElementById("lb"),img=document.getElementById("lb-img"),cnt=document.getElementById("lb-count"),idx=0;
+  function show(i){var n=CUR.photos.length;idx=(i+n)%n;img.src="img/"+CUR.photos[idx]+".jpg";img.alt="Foto fra "+CUR.title+", bilde "+(idx+1)+" av "+n;cnt.textContent=(idx+1)+" / "+n;}
+  document.addEventListener("click",function(e){var b=e.target.closest("[data-lb]");if(!b||!CUR||!CUR.photos)return;show(parseInt(b.dataset.lb,10));try{lb.showModal();}catch(x){lb.setAttribute("open","");}});
+  document.getElementById("lb-prev").addEventListener("click",function(){show(idx-1);});
+  document.getElementById("lb-next").addEventListener("click",function(){show(idx+1);});
+  document.getElementById("lb-close").addEventListener("click",function(){lb.close();});
+  lb.addEventListener("click",function(e){if(e.target===lb)lb.close();});
+  lb.addEventListener("keydown",function(e){if(e.key==="ArrowLeft"){e.preventDefault();show(idx-1);}if(e.key==="ArrowRight"){e.preventDefault();show(idx+1);}});
+  var x0=null;img.addEventListener("touchstart",function(e){x0=e.touches[0].clientX;},{passive:true});
+  img.addEventListener("touchend",function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)show(idx+(dx<0?1:-1));x0=null;});
+})();
+
+/* Hva gjør jeg: bare ett tema åpent om gangen */
+document.querySelectorAll('.acc details').forEach(function(d){
+  d.addEventListener('toggle',function(){ if(document.body.hasAttribute('data-editing'))return; if(d.open) document.querySelectorAll('.acc details').forEach(function(o){ if(o!==d) o.open=false; }); });
+});
+
+
+var CASE_HTML='<div class="case">'
+ +'<p class="lead" data-edit="case-1">En pilot som skulle nå forbundsmedlemmer som aldri hadde brukt forsikringsfordelene sine. Med grundig innsiktsarbeid, spissede budskap i markedskampanjen og CRM-løpet, samt kontinuerlig testing og optimalisering, fikk vi en økning med 35 % flere kunder enn samme periode året før.</p>'
+ +'<div><h3 data-edit="case-2">Utfordring og Innsikt</h3><p data-edit="case-8">Medlemmer av et LO-forbund har medlemsfordeler på forsikring gjennom fordelsprogrammet LOfavør, men mange har aldri brukt dem. Piloten skulle finne ut hvilke tiltak som får disse medlemmene til å kjøpe forsikring.</p><p style="margin-top:12px" data-edit="case-9">Sammen med Opinion fikk vi kartlagt hva som holdt målgruppen tilbake. Innsikten viste at vi måtte jobbe med å bygge kjennskap og kunnskap, og ga oss noen smertepunkter vi brukte videre til kampanje- og budskapsutforming.</p></div>'
+  +'<div><h3 data-edit="case-4">Hva vi gjorde</h3><ul>'
+ +'<li data-edit="case-16">Sammen med Dinamo utviklet vi en markedskampanje med to løp. Ett for å bygge kjennskap, og ett taktisk løp. I samarbeid med RED dentsu X sørget vi for en bred mediemiks med digitale, riksdekkende og regionale medier.</li>'
+ +'<li data-edit="case-13">Hyppige, segmenterte og tilpassede budskap i CRM-løpet: nyhetsbrev, app-varsler.</li>'
+ +'<li data-edit="case-14">A/B-testing av emnefelt i nyhetsbrevutsendelser gjennom hele første periode.</li>'
+ +'<li data-edit="case-15">Utforming av nytt forenklet skjema med booking av rådgiversamtale, for medlemmer som ville snakke med en rådgiver.</li>'
+ +'</ul></div>'
+ +'<div><h3 data-edit="case-5">Min rolle</h3><p style="margin-bottom:6px" data-edit="case-10">Ansvar for markeds- og CRM-delen i piloten sammen med markedsansvarlig og CRM-ansvarlig i LOfavør.</p><ul>'
+ +'<li data-edit="case-r1">Var med på brief og valg av konsept fra reklamebyrå, og faste evalueringsmøter med reklame- og mediebyrå under hele kampanjeperioden.</li>'
+ +'<li data-edit="case-r2">Planla mediedistribusjonen sammen med mediebyrået og markedsansvarlig i LOfavør.</li>'
+ +'<li data-edit="case-r3">Var med på innspilling av filmer til kampanjen for å kvalitetssikre og svare på spørsmål underveis.</li>'
+ +'<li data-edit="case-r4">Initierte nytt kontaktskjema med bookingmulighet, samt forenklet skjemaet.</li>'
+ +'<li data-edit="case-r5">Budskapsformulering basert på innsikt.</li>'
+ +'<li data-edit="case-r6">Skrev tekster til nyhetsbrev, app og landingssider.</li>'
+ +'<li data-edit="case-r7">Rekrutterte rådgivere som var med som modeller i kampanjen, og fulgte dem opp.</li>'
+ +'<li data-edit="case-r8">Kontakt med salgs- og rådgiverapparatet for rapportering av utfylte kontaktskjemaer, salg og henvendelser.</li>'
+ +'</ul></div>'
+ +'<div><h3 data-edit="case-7">Resultater</h3><div class="results">'
+ +'<div><b data-edit="res-n1">+35 %</b><span data-edit="res-t1">økning i målgruppen, sammenlignet med samme periode året før.</span></div>'
+ +'<div><b data-edit="res-n2">+46 %</b><span data-edit="res-t2">økning i digitalt salg til alle LO-medlemmer, sammenlignet med samme periode året før.</span></div>'
+ +'<div><b data-edit="res-n3">+15 %</b><span data-edit="res-t3">økning i trafikk på inngående telefonlinje, sammenlignet med samme periode året før.</span></div>'
+ +'<div><b data-edit="res-n4">+10,5 %</b><span data-edit="res-t4">økning av åpningsrate på nyhetsbrev, over benchmark.</span></div>'
+ +'</div><ul style="margin-top:20px">'
+ +'<li data-edit="res-l1">Piloten aktiverte på kort tid en målgruppe som ikke hadde brukt LOfavør-fordelene på forsikring.</li>'
+ +'<li data-edit="res-l2">Betydelig salgsøkning til LO-medlemmer i alle kanaler etter pilotstart.</li>'
+ +'</ul></div>'
+ +'<div><div class="shots ads" style="margin-top:8px">'
+ +'<img src="img/lo-ad-1.jpg" alt="Facebook-annonse: rådgiver forklarer kasko på ti sekunder" loading="lazy">'
+ +'<img src="img/lo-ad-2.jpg" alt="Facebook-annonse: renovasjonsarbeider minnes på medlemsfordelene" loading="lazy">'
+ +'<img src="img/lo-ad-3.jpg" alt="Facebook-annonse: mann på gata med skilt om medlemsfordeler" loading="lazy">'
+ +'</div></div>'
+ +'</div>';
 /* Dialog */
 var dlg=document.getElementById("dlg");
 function openWork(key){
   var w=WORKS[key];
   document.getElementById("dlg-kicker").textContent=w.kicker;
   document.getElementById("dlg-title").textContent=w.title;
-  document.getElementById("dlg-text").textContent=w.text||w.role;
+  document.getElementById("dlg-text").textContent=w.kind==="case"?w.role:(w.text||w.role);
   var b=document.getElementById("dlg-body");
-  if(w.kind==="series"){
+  if(w.kind==="case"){ b.innerHTML=CASE_HTML; }
+  else if(w.kind==="series"){
     b.innerHTML='<div class="list">'+SERIES.map(function(s,i){return '<a href="'+s.url+'" target="_blank" rel="noopener"><img src="'+s.img+'" alt=""><span class="mono" style="color:var(--muted);font-weight:400">'+(i+1)+'/4 · '+s.year+'</span><span>'+esc(s.title)+' ↗</span></a>';}).join("")+'</div>';
   } else {
-    b.innerHTML='<div class="photos">'+w.photos.map(function(p){return '<img src="img/'+p+'.jpg" alt="Foto fra '+esc(w.title)+'" loading="lazy">';}).join("")+'</div><p class="mono" style="color:var(--muted);margin:0">Foto: Heidi F. Enger Otone</p>';
+    b.innerHTML='<div class="photos">'+w.photos.map(function(p,i){return '<button type="button" class="ph" data-lb="'+i+'" aria-label="Vis bilde '+(i+1)+' av '+w.photos.length+' i stort format"><img src="img/'+p+'.jpg" alt="Foto fra '+esc(w.title)+'" loading="lazy"></button>';}).join("")+'</div><p class="mono" style="color:var(--muted);margin:0">Foto: Heidi F. Enger Otone</p>';
   }
+  CUR=w;
   try{dlg.showModal();}catch(e){dlg.setAttribute("open","");}
 }
 document.addEventListener("click",function(e){
+  if(document.body.hasAttribute("data-editing"))return;
   var o=e.target.closest("[data-open]"); if(o){openWork(o.dataset.open);}
 });
 document.getElementById("dlg-close").addEventListener("click",function(){dlg.close();});
