@@ -10,19 +10,27 @@ Dette er porteføljesiden til Heidi F. Enger Otone (innhold og kommunikasjon, Os
 ## Oppbygging
 - Én fil: `index.html` (HTML, CSS og JavaScript i samme fil). Bilder ligger i `img/`.
 - Publiseres med GitHub Pages fra `main`-grenen. En push til `main` oppdaterer siden etter et minutt eller to.
-- Innholdet ligger i JavaScript-objektene `WORKS`, `SERIES` og `SLOTS` nederst i `index.html`:
+- Siden har menyen **Hjem** og **Arbeid**, og sidene styres med `#` i adressen:
+  - `#hjem` (standard): rundt portrett (`img/heidi.jpeg`), navn, kort tekst om Heidi, LinkedIn og e-post. Deretter «/Tidligere arbeid» med tre ikonbokser, og «/Hva gjør jeg» med sammenleggbare lister.
+  - `#arbeid`: de samme tre ikonboksene.
+  - `#tekster`, `#kampanje`, `#foto`: én side per kategori med arbeidene i et rutenett.
+  - `#lofavor`: egen prosjektside for LOfavør-saken. Teksten ligger i `CASE_HTML` i `index.html`.
+- De tre ikonboksene er Tekst og innhold (ark med penn), Kampanje og CRM (megafon) og Foto (kamera). Ikonene er tegnet direkte i koden (SVG) og har en liten animasjon når man holder musa over.
+- Innholdet ligger i JavaScript-objektene nederst i `index.html`:
   - `WORKS`: hvert arbeid (tittel, kicker-linje, rolle, bilde, lenke eller bildeliste)
   - `SERIES`: de fire artiklene i Livsløpserien
-  - `SLOTS`: hvilke arbeider som vises i hver fane (Tekster, Foto, Alt)
-- Nytt arbeid: legg bildet i `img/` (komprimert, maks ca. 1200 px bredt), legg til et innslag i `WORKS` og sett det inn i riktige `SLOTS`.
+  - `SLOTS`: hvilke arbeider som vises i hver kategori (`texts`, `campaign`, `photos`)
+  - `CATS`: kobler adressen (`tekster`, `kampanje`, `foto`) til tittel og riktig `SLOTS`-liste
+- Nytt arbeid: legg bildet i `img/` (komprimert, maks ca. 1200 px bredt), legg til et innslag i `WORKS` og sett det inn i riktig `SLOTS`-liste.
+- Sjekk at alle bildefiler som `index.html` viser til faktisk finnes i `img/`. Filnavnet må stemme helt, også endelsen (`.jpg` og `.jpeg` er ikke det samme).
 
 ## Designregler (hentet fra CV-en hennes i Figma)
-- Kun svart og hvitt. Ingen farger.
-- Skrift: Inter (vekt 500 til overskrifter, 400 til brødtekst) og IBM Plex Mono for små detaljer (type, kunde, år, e-post).
-- Rent og luftig: hvert kort viser bare bilde, kicker-linje (type · kunde · år), tittel og én linje om hva Heidi gjorde. Ingen merker, rammer eller lange beskrivelser.
-- Siden åpner på fanen «Tekster». Rekkefølgen er Tekster, Foto, Alt. «Alt» står sist.
+- Kun svart og hvitt (og svake gråtoner). Ingen farger.
+- Skrift: Inter (vekt 500 til overskrifter, 400 til brødtekst) og IBM Plex Mono for små detaljer (type, kunde, år, e-post, etiketter som «/Tidligere arbeid»).
+- Rent og luftig: hvert arbeidskort viser bare bilde, kicker-linje (type · kunde · år), tittel og én linje om hva Heidi gjorde. Ingen merker eller lange beskrivelser.
 
 ## Fakta om arbeidene
 - Kundehistoriene og Livsløpserien er laget for Fremtind og publisert på sparebank1.no.
+- LOfavør-saken er et markedssamarbeid mellom Fremtind og LOfavør (2025–2026). Bildene (`lo-cover.jpg`, `lo-ad-1.jpg` til `lo-ad-3.jpg`) er skjermbilder fra kampanjen, ikke foto tatt av Heidi.
 - Bildene i vannlekkasje-saken og alle fotoprosjektene er tatt av Heidi.
 - Bildene i barneforsikring-saken og Livsløpserien er IKKE tatt av Heidi. Ikke krediter dem til henne.
