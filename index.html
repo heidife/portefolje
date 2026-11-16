@@ -94,10 +94,6 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 .case h3{font-weight:500;font-size:15px;margin:0 0 6px;letter-spacing:0}
 .case p{margin:0}
 .case ul{margin:0;padding-left:1.1em;display:grid;gap:4px}
-.results{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:20px 20px;align-items:start;margin:4px 0 0;padding:20px 0 0;border-top:1px solid var(--line);max-width:none}
-.results div{display:grid;gap:4px}
-.results b{font-weight:500;font-size:34px;letter-spacing:-.03em;line-height:1}
-.results span{font-size:14px;color:var(--muted);line-height:1.35}
 
 /* Dialog */
 dialog{border:0;padding:0;background:var(--paper);color:var(--ink);width:min(1100px,94vw);max-height:90vh}
@@ -464,17 +460,13 @@ var CASE_HTML='<div class="case">'
  +'<li data-edit="case-r7">Rekrutterte rådgivere som var med som modeller i kampanjen, og fulgte dem opp.</li>'
  +'<li data-edit="case-r8">Kontakt med salgs- og rådgiverapparatet for rapportering av utfylte kontaktskjemaer, salg og henvendelser.</li>'
  +'</ul></div>'
- +'<div><h3 data-edit="case-7">Resultater</h3><div class="results">'
- +'<div><b data-edit="res-n1">+35 %</b><span data-edit="res-t1">økning i målgruppen, sammenlignet med samme periode året før.</span></div>'
- +'<div><b data-edit="res-n2">+46 %</b><span data-edit="res-t2">økning i digitalt salg til alle LO-medlemmer, sammenlignet med samme periode året før.</span></div>'
- +'<div><b data-edit="res-n3">+15 %</b><span data-edit="res-t3">økning i trafikk på inngående telefonlinje, sammenlignet med samme periode året før.</span></div>'
- +'<div><b data-edit="res-n4">+10,5 %</b><span data-edit="res-t4">økning av åpningsrate på nyhetsbrev, over benchmark.</span></div>'
- +'</div><ul style="margin-top:20px">'
+ +'<div><h3 data-edit="case-7">Resultater</h3><ul>'
  +'<li data-edit="res-l1">Piloten aktiverte på kort tid en målgruppe som ikke hadde brukt LOfavør-fordelene på forsikring.</li>'
  +'<li data-edit="res-l2">Betydelig salgsøkning til LO-medlemmer i alle kanaler etter pilotstart.</li>'
+ +'<li data-edit="res-l3">Økning i åpningsrate på samtlige nyhetsbrev sendt i perioden.</li>'
  +'</ul></div>'
  +'<div><div class="shots ads" style="margin-top:8px">'
- +'<img src="img/lo-ad-1.jpg" alt="Facebook-annonse fra Rådgivertesten: rådgiver forklarer bonus til en femåring" loading="lazy">'
+ +'<img src="img/lo-ad-minner-medlemmer.jpg" alt="Facebook-annonse: mann med stort skilt som minner medlemmer på de gode forsikringsfordelene" loading="lazy">'
  +'<img src="img/lo-ad-2.jpg" alt="Facebook-annonse fra Rådgivertesten: rådgiver forklarer kasko på ti sekunder" loading="lazy">'
  +'<img src="img/lo-ad-3.jpg" alt="Facebook-annonse: renovasjonsarbeider minner medlemmer på forsikringsfordelene" loading="lazy">'
  +'</div></div>'
